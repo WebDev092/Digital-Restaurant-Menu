@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {useSelector} from "react-redux";
 import ShowMoreText from "react-show-more-text";
 import {
   Grid,
@@ -24,11 +25,12 @@ import CutomTabs from "../Components/Tab";
 import Map from "../Components/map";
 import Header from "../Layout/header";
 import bgImg from "../assets/background.png";
-import {styles} from "./Home.styles";
+import { styles } from "./Home.styles";
 
 const useStyles = makeStyles(styles);
 const Home = () => {
   const classes = useStyles();
+  const restaurantList = useSelector((state) => state.home.showrestaurant);
   const [expand, setExpand] = useState(false);
   const [guest, setGuest] = useState(0);
   const [selectedDate, setSelectedDate] = useState(
@@ -106,7 +108,7 @@ const Home = () => {
                           each presented in his unique way.
                         </Typography>
                       </Box>
-                      <Box m={2} style={{color:'#4f4f65'}}>
+                      <Box m={2} style={{ color: "#4f4f65" }}>
                         <ShowMoreText
                           lines={1}
                           more={"+ More"}
@@ -140,7 +142,7 @@ const Home = () => {
                         </ShowMoreText>
                       </Box>
                       <Box m={2}>
-                        <CutomTabs />
+                        <CutomTabs menuList={restaurantList}/>
                       </Box>
                       <Box m={2}>
                         <Typography variant="h4" style={{ fontWeight: 600 }}>
@@ -257,7 +259,7 @@ const Home = () => {
                         ></div>
                       </Box>
                       <Box m={2} className={classes.boxWrapper}>
-                        <Typography style={{textAlign:'center'}}>
+                        <Typography style={{ textAlign: "center" }}>
                           Reservations are scheduled for release on November 29,
                           2020 at 8:00 AM Pacific Standard Time.
                         </Typography>
