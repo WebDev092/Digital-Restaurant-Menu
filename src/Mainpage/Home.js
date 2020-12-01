@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import ShowMoreText from "react-show-more-text";
 import {
   Grid,
@@ -33,9 +33,7 @@ const Home = () => {
   const restaurantList = useSelector((state) => state.home.showrestaurant);
   const [expand, setExpand] = useState(false);
   const [guest, setGuest] = useState(0);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -142,7 +140,7 @@ const Home = () => {
                         </ShowMoreText>
                       </Box>
                       <Box m={2}>
-                        <CutomTabs menuList={restaurantList}/>
+                        <CutomTabs menuList={restaurantList} />
                       </Box>
                       <Box m={2}>
                         <Typography variant="h4" style={{ fontWeight: 600 }}>
