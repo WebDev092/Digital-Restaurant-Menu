@@ -24,33 +24,33 @@ const SearchDropDown = () => {
     const searchRes = e.target.textContent;
     let fillterRes = detailJson.filter((res) => res.label.includes(address));
     dispatch(setRestaurant(fillterRes[0].wine))
-    // const infowindow = new window.google.maps.InfoWindow();
-    // const sydney = new window.google.maps.LatLng(mapInfo.lat, mapInfo.lng);
-    // const map = new window.google.maps.Map(document.getElementById("myMap"), {
-    //   center: sydney,
-    //   zoom: 10,
-    // });
-    // const service = new window.google.maps.places.PlacesService(map);
-    // const request = {
-    //   location: sydney,
-    //   radius: "500",
-    //   query: searchRes,
-    // };
-    // service.textSearch(request, (results, status) => {
-    //   if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-    //     map.setCenter(results[0].geometry.location);
-    //     results.map((res) => {
-    //       const marker = new window.google.maps.Marker({
-    //         map,
-    //         position: res.geometry.location,
-    //       });
-    //       new window.google.maps.event.addListener(marker, "click", () => {
-    //         infowindow.setContent(res.name);
-    //         infowindow.open(map);
-    //       });
-    //     });
-    //   }
-    // });
+    const infowindow = new window.google.maps.InfoWindow();
+    const sydney = new window.google.maps.LatLng(mapInfo.lat, mapInfo.lng);
+    const map = new window.google.maps.Map(document.getElementById("myMap"), {
+      center: sydney,
+      zoom: 10,
+    });
+    const service = new window.google.maps.places.PlacesService(map);
+    const request = {
+      location: sydney,
+      radius: "500",
+      query: searchRes,
+    };
+    service.textSearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        results.map((res) => {
+          const marker = new window.google.maps.Marker({
+            map,
+            position: res.geometry.location,
+          });
+          new window.google.maps.event.addListener(marker, "click", () => {
+            infowindow.setContent(res.name);
+            infowindow.open(map);
+          });
+        });
+      }
+    });
     setButtonLabel(searchRes);
     setOpen(false);
     setAnchorEl(null);
